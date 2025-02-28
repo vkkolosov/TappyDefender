@@ -3,6 +3,7 @@ plugins {
 }
 
 android {
+    namespace 'com.gamecodeschool.c1tappydefender'
     compileSdk 32
 
     defaultConfig {
