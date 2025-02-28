@@ -19,6 +19,8 @@ import java.util.ArrayList;
 
 public class TDView extends SurfaceView implements Runnable {
 
+    private static final int LEFT_VOLUME = 4;
+    private static final int RIGHT_VOLUME = 4;
     private SoundPool soundPool;
     int start = -1;
     int bump = -1;
@@ -118,7 +120,7 @@ public class TDView extends SurfaceView implements Runnable {
         timeStarted = System.currentTimeMillis();
         gameEnded = false;
 
-        soundPool.play(start, 1, 1, 0, 0, 1);
+        soundPool.play(start, LEFT_VOLUME, RIGHT_VOLUME, 0, 0, 1);
     }
 
     @Override
@@ -151,10 +153,10 @@ public class TDView extends SurfaceView implements Runnable {
         }
 
         if (hitDetected) {
-            soundPool.play(bump, 1, 1, 0, 0, 1);
+            soundPool.play(bump, LEFT_VOLUME, RIGHT_VOLUME, 0, 0, 1);
             player.reduceShieldStrength();
             if (player.getShieldStrength() < 0) {
-                soundPool.play(destroyed, 1, 1, 0, 0, 1);
+                soundPool.play(destroyed, LEFT_VOLUME, RIGHT_VOLUME, 0, 0, 1);
                 gameEnded = true;
             }
         }
@@ -180,7 +182,7 @@ public class TDView extends SurfaceView implements Runnable {
 
         //Completed the game!
         if (distanceRemaining < 0) {
-            soundPool.play(win, 1, 1, 0, 0, 1);
+            soundPool.play(win, LEFT_VOLUME, RIGHT_VOLUME, 0, 0, 1);
             //check for new fastest time
             if (timeTaken < fastestTime) {
                 fastestTime = timeTaken;
